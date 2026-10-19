@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join a Run or Gun room</title>
+<meta property="og:title" content="Join my Run or Gun room!">
+<meta property="og:description" content="Tap to open the game and jump straight into the room.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="card">
+  <h1>RUN <span>or</span> GUN</h1>
+  <p class="lead" id="lead">Opening the game&hellip;</p>
+  <div class="code" id="code">------</div>
+  <a class="btn primary" id="open" href="#">Open the game</a>
+  <a class="btn" id="store" href="https://play.google.com/store/apps/details?id=com.omarmansy.runorgun">Get it on Google Play</a>
+  <button class="btn ghost" id="copy" type="button">Copy room code</button>
+  <p class="small">Already in the game? Play Online &rarr; Join with a code.<br>
+  <span dir="rtl">اللعبة مفتوحة؟ العب أونلاين ← ادخل بكود.</span></p>
+</main>
+<script>
+  // runorgun://join/CODE opens the installed game (Windows, Android, iOS, macOS) and joins the room.
+  var q = new URLSearchParams(location.search);
+  var code = (q.get('c') || q.get('code') || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  var valid = code.length >= 4 && code.length <= 12;
+  var deep = 'runorgun://join/' + code;
+  var play = 'https://play.google.com/store/apps/details?id=com.omarmansy.runorgun';
+  var android = /Android/i.test(navigator.userAgent);
+  // Android: an intent link opens the app, or the Play Store if it isn't installed
+  var intent = 'intent://join/' + code + '#Intent;scheme=runorgun;package=com.omarmansy.runorgun;S.browser_fallback_url=' + encodeURIComponent(play) + ';end';
+  var link = android ? intent : deep;
+  document.getElementById('code').textContent = valid ? code : '------';
+  document.getElementById('open').href = link;
+  if (valid) {
+    setTimeout(function () { location.href = link; }, 250);
+    setTimeout(function () {
+      document.getElementById('lead').textContent = "Didn't open? Tap the button below, or install the game first.";
+    }, 2200);
+  } else {
+    document.getElementById('lead').textContent = 'This invite has no room code. Ask your friend for a new link.';
+  }
+  document.getElementById('copy').onclick = function () {
+    if (navigator.clipboard) navigator.clipboard.writeText(code);
+    this.textContent = 'Copied!';
+  };
+</script>
+</body>
+</html>
