@@ -14,7 +14,7 @@
   <p class="lead" id="lead">Opening the game&hellip;</p>
   <div class="code" id="code">------</div>
   <a class="btn primary" id="open" href="#">Open the game</a>
-  <a class="btn" id="store" href="https://play.google.com/store/apps/details?id=com.omarmansy.runorgun">Get it on Google Play</a>
+  <a class="btn" id="store" href="https://play.google.com/store/apps/details?id=com.sanabelapps.runorgun">Get it on Google Play</a>
   <button class="btn ghost" id="copy" type="button">Copy room code</button>
   <p class="small">Already in the game? Play Online &rarr; Join with a code.<br>
   <span dir="rtl">اللعبة مفتوحة؟ العب أونلاين ← ادخل بكود.</span></p>
@@ -25,10 +25,10 @@
   var code = (q.get('c') || q.get('code') || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
   var valid = code.length >= 4 && code.length <= 12;
   var deep = 'runorgun://join/' + code;
-  var play = 'https://play.google.com/store/apps/details?id=com.omarmansy.runorgun';
+  var play = 'https://play.google.com/store/apps/details?id=com.sanabelapps.runorgun';
   var android = /Android/i.test(navigator.userAgent);
   // Android: an intent link opens the app, or the Play Store if it isn't installed
-  var intent = 'intent://join/' + code + '#Intent;scheme=runorgun;package=com.omarmansy.runorgun;S.browser_fallback_url=' + encodeURIComponent(play) + ';end';
+  var intent = 'intent://join/' + code + '#Intent;scheme=runorgun;package=com.sanabelapps.runorgun;S.browser_fallback_url=' + encodeURIComponent(play) + ';end';
   var link = android ? intent : deep;
   document.getElementById('code').textContent = valid ? code : '------';
   document.getElementById('open').href = link;
