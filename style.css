@@ -69,7 +69,7 @@ h2 {
   color: var(--mustard);
   text-shadow: 2px 3px 0 var(--ink);
 }
-[dir="rtl"] h2 { font-family: "Cairo", sans-serif; font-weight: 900; letter-spacing: 0; }
+[dir="rtl"] h1, [dir="rtl"] h2 { font-family: "Cairo", sans-serif; font-weight: 900; letter-spacing: 0; }
 h2 .num {
   flex: none;
   display: grid;
@@ -98,7 +98,6 @@ a:hover { color: var(--mustard); }
 /* at-a-glance stickers */
 .glance { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0 6px; }
 @media (min-width: 780px) { .glance { grid-template-columns: repeat(4, 1fr); } }
-@media (max-width: 400px) { .glance { grid-template-columns: 1fr; } }
 .chip {
   padding: 12px 14px;
   border: 3px solid var(--ink);
@@ -173,8 +172,23 @@ footer { margin-top: 22px; color: var(--dim); font-size: 14px; text-align: cente
 footer a { color: var(--dim); }
 section[dir="rtl"], .doc[dir="rtl"] { text-align: right; }
 
-@media (max-width: 520px) {
-  body { font-size: 16px; }
-  h2 { font-size: 22px; }
-  .card { border-radius: 18px; }
+/* phones: use the width for text, not for stacked margins */
+@media (max-width: 600px) {
+  body { padding: 10px 8px 28px; font-size: 16px; line-height: 1.65; background-attachment: scroll; }
+  .card, .card.wide { padding: 18px 14px 22px; border-width: 3px; border-radius: 16px; box-shadow: 4px 5px 0 rgba(0, 0, 0, .55); }
+  .logo, .page .logo { width: min(190px, 52vw); }
+  .lang { margin: 8px 0 2px; }
+  .lang a { min-width: 0; flex: 1; max-width: 150px; padding: 5px 10px; font-size: 15px; }
+  h1 { font-size: 32px; text-align: center; }
+  .meta { text-align: center; font-size: 13px; margin-bottom: 12px; }
+  h2 { font-size: 20px; gap: 10px; margin: 26px 0 6px; }
+  h2 .num { width: 28px; height: 28px; font-size: 15px; border-radius: 8px; }
+  .glance { gap: 8px; margin: 12px 0 4px; }
+  .chip { padding: 9px 10px; font-size: 13px; line-height: 1.45; border-radius: 12px; box-shadow: 2px 3px 0 rgba(0, 0, 0, .5); }
+  .chip b { font-size: 15px; }
+  ul { padding-inline-start: 18px; }
+  li { margin: 6px 0; }
+  .box { padding: 12px 12px; }
+  .btn { font-size: 19px; padding: 12px; }
+  .code { font-size: 34px; letter-spacing: 4px; }
 }
